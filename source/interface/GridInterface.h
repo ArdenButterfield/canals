@@ -18,6 +18,8 @@ class GridInterface : public juce::Component, public juce::Timer
 public:
     GridInterface(dsp::Grid&);
     ~GridInterface();
+
+    void cellClicked(unsigned x, unsigned y);
 private:
     void paint (juce::Graphics& g) override;
     void resized() override;
@@ -25,6 +27,7 @@ private:
     bool keyPressed(const juce::KeyPress& key) override;
     dsp::Grid& grid;
     std::vector<std::unique_ptr<CellInterface>> cellInterfaces;
+    void mouseUp(const juce::MouseEvent& event) override;
 };
 
 }

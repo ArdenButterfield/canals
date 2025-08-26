@@ -5,17 +5,20 @@
 #include "GridInterface.h"
 
 using namespace interface;
+#include <iostream>
 
  GridInterface::GridInterface(dsp::Grid& g) : grid(g)
 {
     startTimerHz (60);
     cellInterfaces.resize (grid.getHeight() * grid.getWidth());
+     unsigned i = 0;
     for (auto& cell : cellInterfaces)
     {
-        cell = std::make_unique<CellInterface> ();
+        cell = std::make_unique<CellInterface>(this, i % grid.getWidth(), i / grid.getWidth());
         addAndMakeVisible (cell.get());
+        i += 1;
     }
-    setInterceptsMouseClicks (true, true);
+    // setInterceptsMouseClicks (true, true);
     setWantsKeyboardFocus(true);
 }
 GridInterface::~GridInterface()
@@ -70,4 +73,14 @@ bool GridInterface::keyPressed (const juce::KeyPress& key)
          return true;
      }
      return false;
+}
+void GridInterface::mouseUp (const juce::MouseEvent& event)
+{
+    if (event.mouseWasClicked()) {
+        std::cout << "clicked\n";
+    }
+}
+void interface::GridInterface::cellClicked (unsigned x, unsigned y)
+{
+     grid.setActiveCell ({x, y});
 }

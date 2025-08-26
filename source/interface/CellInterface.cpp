@@ -6,12 +6,12 @@
 
 #include "../dsp/Cell.h"
 #include <string>
-
+#include "GridInterface.h"
 using namespace interface;
 
- CellInterface::CellInterface() : isActive (false)
+CellInterface::CellInterface(GridInterface* p, unsigned _x, unsigned _y) : isActive (false), parent(p), x(_x), y(_y)
 {
-     setInterceptsMouseClicks (false, false);
+     // setInterceptsMouseClicks (false, false);
 
 }
 
@@ -34,4 +34,9 @@ void CellInterface::resized()
 {
 
 }
-
+void CellInterface::mouseUp (const juce::MouseEvent& event)
+{
+     if (event.mouseWasClicked()) {
+         parent->cellClicked(x, y);
+     }
+}

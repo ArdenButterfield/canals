@@ -9,17 +9,23 @@
 
 namespace interface
 {
+class GridInterface;
+
+
 class CellInterface : public juce::Component
 {
 public:
-    CellInterface();
+    CellInterface(GridInterface* p, unsigned x, unsigned y);
     ~CellInterface() override;
     bool isActive;
     juce::String text;
     bool isValid;
 private:
+    GridInterface* parent;
+    unsigned x, y;
     void paint(juce::Graphics& g) override;
     void resized() override;
+    void mouseUp(const juce::MouseEvent& event) override;
 };
 }
 
