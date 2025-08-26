@@ -10,6 +10,7 @@
 #include "CellIdentifiers.h"
 #include "juce_core/juce_core.h"
 
+#include <fontconfig/fontconfig.h>
 
 namespace dsp
 {
@@ -36,6 +37,24 @@ class InputCell : public Cell
 {
 public:
     InputCell() : Cell() {}
+    [[nodiscard]] juce::Identifier getIdentifier() const override;
+};
+class OutputCell : public Cell
+{
+public:
+    OutputCell() : Cell() {}
+    [[nodiscard]] juce::Identifier getIdentifier() const override;
+};
+class HorizontalPipeCell : public Cell
+{
+public:
+    HorizontalPipeCell() : Cell() {}
+    [[nodiscard]] juce::Identifier getIdentifier() const override;
+};
+class VerticalPipeCell : public Cell
+{
+public:
+    VerticalPipeCell() : Cell() {}
     [[nodiscard]] juce::Identifier getIdentifier() const override;
 };
 

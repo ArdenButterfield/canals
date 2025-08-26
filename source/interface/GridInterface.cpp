@@ -50,8 +50,6 @@ void GridInterface::timerCallback()
 
 bool GridInterface::keyPressed (const juce::KeyPress& key)
 {
-     auto desc = key.getTextDescription();
-
      auto activecell = grid.getActiveCell();
      if (key == juce::KeyPress::upKey && activecell.y > 0) {
          grid.setActiveCell(activecell.translated (0,-1));
@@ -66,20 +64,15 @@ bool GridInterface::keyPressed (const juce::KeyPress& key)
          if (activecell.x < grid.getWidth() - 1) {
              grid.setActiveCell (activecell.translated (-1, 0));
          }
+     } else if (key.getKeyCode() >= 32 && key.getKeyCode() <= 126) {
+         // TODO: hacky range of printable ascii characters. At some point i may want to handle chars outside of ascii, for comments and whatnot.
+         grid.setAtActiveCell (juce::Identifier(std::string(1, key.getKeyCode())));
+     } else {
+         return false;
      }
-     std::cout << desc << "\n";
-     if (desc.length() == 1) {
-         grid.setAtActiveCell (juce::Identifier(desc));
-         return true;
-     }
-     return false;
+     return true;
 }
-void GridInterface::mouseUp (const juce::MouseEvent& event)
-{
-    if (event.mouseWasClicked()) {
-        std::cout << "clicked\n";
-    }
-}
+
 void interface::GridInterface::cellClicked (unsigned x, unsigned y)
 {
      grid.setActiveCell ({x, y});

@@ -27,7 +27,6 @@ private:
     bool keyPressed(const juce::KeyPress& key) override;
     dsp::Grid& grid;
     std::vector<std::unique_ptr<CellInterface>> cellInterfaces;
-    void mouseUp(const juce::MouseEvent& event) override;
 };
 
 }

@@ -44,6 +44,12 @@ void Grid::setCellAt (unsigned x, unsigned y, const juce::Identifier& id)
         cells[y * width + x] = std::make_unique<BlankCell>();
     } else if (id == CELL_INPUT) {
         cells[y * width + x] = std::make_unique<InputCell>();
+    } else if (id == CELL_OUTPUT) {
+        cells[y * width + x] = std::make_unique<OutputCell>();
+    } else if (id == CELL_HORIZONTAL_PIPE) {
+        cells[y * width + x] = std::make_unique<HorizontalPipeCell> ();
+    } else if (id == CELL_VERTICAL_PIPE) {
+        cells[y * width + x] = std::make_unique<VerticalPipeCell> ();
     } else {
         cells[y * width + x] = std::make_unique<InvalidCell>(id);
     }

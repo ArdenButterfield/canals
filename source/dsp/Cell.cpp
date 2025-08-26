@@ -27,6 +27,18 @@ juce::Identifier InputCell::getIdentifier() const
 {
      return CELL_INPUT;
 }
+juce::Identifier OutputCell::getIdentifier() const
+{
+     return CELL_OUTPUT;
+}
+juce::Identifier VerticalPipeCell::getIdentifier() const
+{
+     return CELL_VERTICAL_PIPE;
+}
+juce::Identifier HorizontalPipeCell::getIdentifier() const
+{
+     return CELL_HORIZONTAL_PIPE;
+}
 
 bool InvalidCell::isValid()
 {
