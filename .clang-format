@@ -29,8 +29,8 @@ BraceWrapping: # Allman except for lambdas
   AfterFunction: true
   AfterNamespace: true
   AfterStruct: true
-  BeforeElse: true
-  AfterControlStatement: Always
+  BeforeElse: false
+  AfterControlStatement: Never
   BeforeLambdaBody: false
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializersBeforeComma: false
@@ -51,7 +51,7 @@ KeepEmptyLinesAtTheStartOfBlocks: false
 Language: Cpp
 MaxEmptyLinesToKeep: 1
 FixNamespaceComments: false
-NamespaceIndentation: All
+NamespaceIndentation: None
 PointerAlignment: Left
 ReflowComments: false
 SortIncludes: true
