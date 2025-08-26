@@ -14,6 +14,9 @@ class CellInterface : public juce::Component
 public:
     CellInterface();
     ~CellInterface() override;
+    bool isActive;
+    juce::String text;
+    bool isValid;
 private:
     void paint(juce::Graphics& g) override;
     void resized() override;

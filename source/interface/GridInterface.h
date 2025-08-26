@@ -22,6 +22,7 @@ private:
     void paint (juce::Graphics& g) override;
     void resized() override;
     void timerCallback() override;
+    bool keyPressed(const juce::KeyPress& key) override;
     dsp::Grid& grid;
     std::vector<std::unique_ptr<CellInterface>> cellInterfaces;
 };

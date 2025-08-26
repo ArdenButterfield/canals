@@ -16,9 +16,26 @@ using namespace dsp;
 
 }
 
-juce::Identifier Cell::getIdentifier() const
+bool Cell::isValid() { return true; }
+
+juce::Identifier BlankCell::getIdentifier() const
 {
     return CELL_BLANK;
+}
+
+juce::Identifier InputCell::getIdentifier() const
+{
+     return CELL_INPUT;
+}
+
+bool InvalidCell::isValid()
+{
+    return false;
+}
+
+juce::Identifier InvalidCell::getIdentifier() const
+{
+     return identifier;
 }
 
 

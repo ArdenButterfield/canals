@@ -5,6 +5,8 @@
 #ifndef CANALS_CELL_H
 #define CANALS_CELL_H
 
+#include <utility>
+
 #include "CellIdentifiers.h"
 #include "juce_core/juce_core.h"
 
@@ -16,10 +18,35 @@ class Cell
 {
 public:
     Cell();
-    ~Cell();
-    [[nodiscard]] virtual juce::Identifier getIdentifier() const;
+    virtual ~Cell();
+    [[nodiscard]] virtual juce::Identifier getIdentifier() const = 0;
+    [[nodiscard]] virtual bool isValid();
 
 private:
+};
+
+class BlankCell : public Cell
+{
+public:
+    BlankCell() : Cell () {}
+    [[nodiscard]] juce::Identifier getIdentifier() const override;
+};
+
+class InputCell : public Cell
+{
+public:
+    InputCell() : Cell() {}
+    [[nodiscard]] juce::Identifier getIdentifier() const override;
+};
+
+class InvalidCell : public Cell
+{
+public:
+    explicit InvalidCell(juce::Identifier id) : Cell (), identifier (std::move(id)) {}
+    bool isValid() override;
+    [[nodiscard]] juce::Identifier getIdentifier() const override;
+private:
+    juce::Identifier identifier;
 };
 
 }

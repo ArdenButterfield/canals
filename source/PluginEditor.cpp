@@ -34,5 +34,4 @@ void PluginEditor::resized()
     auto area = getLocalBounds();
     area.removeFromBottom(50);
     gridInterface.setBounds (getLocalBounds().withTrimmedTop (10).withTrimmedBottom (10).withTrimmedLeft (10).withTrimmedRight (10));
-
 }

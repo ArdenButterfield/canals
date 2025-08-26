@@ -6,9 +6,9 @@
 #define CANALS_GRID_H
 
 #include <juce_audio_processors/juce_audio_processors.h>
+#include <juce_graphics/juce_graphics.h>
 #include <vector>
 #include <memory>
-
 #include "Cell.h"
 
 namespace dsp
@@ -17,15 +17,20 @@ namespace dsp
 class Grid
 {
 public:
-    Grid(int width, int _height);
+    Grid(unsigned _width, unsigned _height);
     ~Grid();
     void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
     void processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages);
-    int getWidth() const;
-    int getHeight() const;
-private:
+    [[nodiscard]] unsigned getWidth() const;
+    [[nodiscard]] unsigned getHeight() const;
+    void setCellAt(unsigned x, unsigned y, const juce::Identifier& id);
+    void setAtActiveCell(const juce::Identifier& id);
+    juce::Point<unsigned> getActiveCell();
+    void setActiveCell(juce::Point<unsigned>);
     std::vector<std::unique_ptr<Cell>> cells;
-    int width, height;
+private:
+    unsigned width, height;
+    juce::Point<unsigned> activeCell;
 };
 
 }
